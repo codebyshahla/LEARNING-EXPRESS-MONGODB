@@ -52,13 +52,46 @@
         <input type="email" id="email" name="email" placeholder="ENTER THE EMAIL" required>
 
         <label for="password">PASSWORD:</label>
-        <input type="password" id="password" name="password" placeholder="PASSWORD" required>
+        <input type="password" id="password" name="password" placeholder="PASSWORD" required onblur="validation(event)">
 
         <label for="password">CONFIRM PASSWORD:</label>
-        <input type="password" id="password" name="password" placeholder="CONFIRM PASSWORD" required>
+        <input type="password" id="passwords" name="passwords" placeholder="CONFIRM PASSWORD" required onblur="validate()" >
 
         <button type="submit">Sign Up</button>
-    </form>
+        <p  id="msg" style="color: #4caf50;"></p>
+        <p  id="errmsg" style="color: red;"></p>
+        <p id="msgg" style="color: #4caf50;"></p>
+        <p id="errrmsg" style="color: red;"></p>
+    </form>    
+
+
+<script>
+    function validation(event) {
+
+        const pass=event.target.value
+        const confirmpass=document.getElementById('passwords').value
+        const regex= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (regex.test(pass)) {
+            document.getElementById('msg').innerText=""   
+        }
+        else{
+
+            document.getElementById('errmsg').innerText="password must contain 8 characters with uppercase,lowercase,special character and number.."
+
+        }
+           
+        if(pass===confirmpass){
+            document.getElementById('msgg').innerText="ok"
+        }
+        else{
+
+            document.getElementById('errrmsg').innerText="password not match"
+
+        }
+        
+    }
+
+</script>
 
 </body>
 </html>

@@ -52,14 +52,34 @@
             <input type="text" id="username" name="username" placeholder="ENTER THE NAME" required>
 
             <label for="password">PASSWORD:</label>
-            <input type="password" id="password" name="password" placeholder="ENTER THE PASSWORD" required>
+            <input type="password" id="password" name="password" placeholder="ENTER THE PASSWORD" onblur="validation(event)" required>
 
             <label for="password">CONFIRM PASSWORD:</label>
             <input type="password" id="password" name="password" placeholder="CONFIRM PASSWORD" required>
 
             <button type="submit">Login</button>
+
+            <p id="msg" style="color: #45a049;"></p>
+            <p id="errmsg" style="color: red;"></p>
         </form>
     </div>
+
+    <script>
+
+         function validation(event) {
+        const pass=event.target.value
+        const regex= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (regex.test(pass)) {
+            document.getElementById('msg').innerText=""   
+        }
+        else{
+            document.getElementById('errmsg').innerText="password must contain 8 characters with uppercase,lowercase,special character and number.."
+
+        }
+
+        
+    }
+    </script>
 
 </body>
 </html>
