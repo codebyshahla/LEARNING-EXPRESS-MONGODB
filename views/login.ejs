@@ -47,15 +47,12 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="your_server_endpoint" method="post">
-            <label for="username">USER NAME:</label>
-            <input type="text" id="username" name="username" placeholder="ENTER THE NAME" required>
+        <form action="/login" method="post">
+            <label for="email">ENTER THE EMAIL</label>
+            <input type="text" id="email" name="email" placeholder="ENTER THE EMAIL" required>
 
             <label for="password">PASSWORD:</label>
             <input type="password" id="password" name="password" placeholder="ENTER THE PASSWORD" onblur="validation(event)" required>
-
-            <label for="password">CONFIRM PASSWORD:</label>
-            <input type="password" id="password" name="password" placeholder="CONFIRM PASSWORD" required>
 
             <button type="submit">Login</button>
 

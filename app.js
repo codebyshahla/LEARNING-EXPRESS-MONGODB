@@ -20,7 +20,7 @@ app.use(session({
     saveUninitialized: true,
   }))
 
-app.use('/admin',adminRoutes)
+app.use('/',adminRoutes)
 app.use('/',commonRoutes)
 app.use('/',userRoutes)
 

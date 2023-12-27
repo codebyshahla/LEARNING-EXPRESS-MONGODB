@@ -7,7 +7,7 @@ const {
 } = require("../controllers/userController");
 
 
-Router.get("/", (req, res)=>{
+Router.get("/userhome", (req, res)=>{
   res.render('user/ushome')
 });
 

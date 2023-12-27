@@ -1,22 +1,21 @@
 const express = require("express");
 const Router = express.Router();
+const admincontroller=require("../controllers/adminController")
 
-Router.get("/", (req, res)=>{
-    res.render('admin/adhome')
-});
+Router.get("/adminhome",admincontroller.home);
 
-Router.get('/product-form',(req, res)=>{
+Router.get('/admin/product-form',(req, res)=>{
   
     res.render('admin/productform')
 })
-Router.get('/productlist',(req, res)=>{
+Router.get('/admin/productlist',(req, res)=>{
 
   res.render('admin/productlist')
 })
-Router.get('/producteditform',(req, res)=>{
+Router.get('/admin/producteditform',(req, res)=>{
   res.render('admin/producteditform')
 })
-Router.get('/userslistform',(req, res)=>{
+Router.get('/admin/userslistform',(req, res)=>{
   res.render('admin/userslistform')
 })
 
