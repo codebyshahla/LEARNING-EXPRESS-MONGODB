@@ -6,9 +6,11 @@ Router.get("/", (req, res)=>{
 });
 
 Router.get('/product-form',(req, res)=>{
+  
     res.render('admin/productform')
 })
 Router.get('/productlist',(req, res)=>{
+
   res.render('admin/productlist')
 })
 Router.get('/producteditform',(req, res)=>{
