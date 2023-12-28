@@ -1,94 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Product Page</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 90vh;
+        justify-content: center;
+        align-items: center;
+      }
 
-        header {
-            background-color:  #89e90b;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
 
-      
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
 
-        nav a {
-            color:  #89e90b;
-            text-decoration: none;
-            padding: 10px;
-            margin-right: 10px;
-            display: inline-block;
-        }
+      input,
+      select {
+        margin-bottom: 10px;
+      }
 
-        section {
-            padding: 20px;
-        }
+      button {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color:  #89e90b;
-            color: #fff;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
+      button:hover {
+        background-color: #45a049;
+      }
     </style>
-</head>
-<body>
+  </head>   
+  <body>
+    <h2>Product Form</h2>
+    <form action="/submit_product" method="post" enctype="multipart/form-data">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" required />
 
-    <header>
-        <h1>Admin Product Page</h1>
-    </header>
+      <label for="productDescription">Product Description:</label>
+      <textarea
+        id="productDescription"
+        name="productDescription"
+        rows="4"
+        required
+      ></textarea>
 
-   
+      <label for="productPrice">Product Price:</label>
+      <input
+        type="number"
+        id="productPrice"
+        name="productPrice"
+        step="0.01"
+        required
+      />
 
-    <section>
-        <h2>Product List</h2>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Product 1</td>
-                    <td>$20.00</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
-                <!-- Add more product rows as needed -->
-            </tbody>
-        </table>
-    </section>
+      <label for="productQuantity">Product Quantity:</label>
+      <input
+        type="number"
+        id="productQuantity"
+        name="productQuantity"
+        required
+      />
 
-</body>
+      <label for="imageUrl">Image</label>
+      <input
+        type="file"
+        id="imageUrl"
+        name="productImage"
+        accept="image/*"
+        required
+      />
+
+      <button type="submit">Add Product</button>
+    </form>
+  </body>
 </html>

@@ -5,18 +5,6 @@ const userModel = require("../models/userschema");
 const bcrypt = require('bcrypt');
 const msg = require("../globalVariables/errorMessages");
 
-// async function hashPassword(password) {
-//   try {
-//     const salt = await bcrypt.genSalt(saltRounds);
-//     const hash = await bcrypt.hash(password, salt);
-//     return hash;
-//   } catch (error) {
-//     console.error('Error hashing password:', error);
-//     throw error;
-//   }
-//   let b=hashPassword()
-//   console.log(b);
-// }
 
 
 const signup = (req, res) => {

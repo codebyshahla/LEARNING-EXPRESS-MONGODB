@@ -3,53 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List Form</title>
+    <title>Admin Product Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input, select {
-            margin-bottom: 10px;
-        }
-
-        button {
+        header {
+            background-color:  #89e90b;
+            color: #fff;
+            text-align: center;
             padding: 10px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            cursor: pointer;
         }
 
-        button:hover {
-            background-color: #45a049;
+      
+
+        nav a {
+            color:  #89e90b;
+            text-decoration: none;
+            padding: 10px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color:  #89e90b;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
         }
     </style>
 </head>
 <body>
 
-    <h2>Product List Form</h2>
-    <form action="/submit_product" method="post">
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" name="productName" required>
+    <header>
+        <h1>Admin Product Page</h1>
+    </header>
 
-        <label for="productDescription">Product Description:</label>
-        <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+   
 
-        <label for="productPrice">Product Price:</label>
-        <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+    <section>
+        <h2>Product List</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        <label for="productQuantity">Product Quantity:</label>
-        <input type="number" id="productQuantity" name="productQuantity" required>
-
-        <button type="submit">Add Product</button>
-    </form>
+                <% allproducts.forEach((item)=> { %>
+                <tr>
+                    <td><%=item.productName %></td>
+                    <td><%=item.productPrice %></td>
+                    <td><%=item.productQuantity %></td>
+                    <td>    <img src="<%= item.imageUrl %>" alt="<%= item.productName %> Image" width="50" height="50">
+                    </td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                
+              <% });%>
+                <!-- Add more product rows as needed -->
+            </tbody>
+        </table>
+    </section>
 
 </body>
 </html>
+
+
+
+
