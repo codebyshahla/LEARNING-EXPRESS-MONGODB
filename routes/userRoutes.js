@@ -7,9 +7,7 @@ const {
 } = require("../controllers/userController");
 
 
-Router.get("/userhome", (req, res)=>{
-  res.render('user/ushome')
-});
+Router.get("/userhome", home);
 
 Router.get('/userproductlist',(req, res)=>{
   res.render('user/userproductlist')

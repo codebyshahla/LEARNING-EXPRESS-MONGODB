@@ -56,12 +56,7 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Admin Product Page</h1>
-    </header>
-
-   
+    <%- include('header.ejs') %>
 
     <section>
         <h2>Product List</h2>
@@ -87,13 +82,21 @@
                     <td>    <img src="<%= item.imageUrl %>" alt="<%= item.productName %> Image" width="50" height="50">
                     </td>
                     <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button><a href="/admin/editPro/<%=item._id %>">Edit</a></button>
+                        <button><a href="/admin/deleteproduct/<%=item._id %>">Delete</a></button>
                     </td>
                 </tr>
                 
               <% });%>
-                <!-- Add more product rows as needed -->
+                <!-- Add more product rows as needed -->  
+
+
+
+
+
+
+
+
             </tbody>
         </table>
     </section>

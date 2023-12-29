@@ -4,28 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Home Page</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: white;
-        }
-
-        header {
-            background-color:  #89e90b;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #89e90b;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
         }
 
         section {
@@ -45,16 +30,7 @@
 </head>
 <body>
 
-    <header>
-        <h1>ADMIN HOME PAGE</h1>
-    </header>
-
-    <nav>
-        <a href="/admin/product-form">PRODUCT FORM</a> |
-        <a href="/admin/productlist">PRODUCTS</a> |
-        <a href="/admin/producteditform">PRODUCT EDIT FORM</a> |
-        <a href="/admin/userslistform">USERS LIST</a>
-    </nav>
+    <%- include('header.ejs') %>
 
     <section>
         <h2>Welcome to the Admin Home Page</h2>

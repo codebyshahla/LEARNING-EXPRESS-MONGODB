@@ -6,7 +6,12 @@ const bodyParser = require("body-parser");
 
 
 const home = (req, res) => {
-  res.render('user/ushome')
+  if(req.session.user && req.session.isAdmin === false) {
+    res.render("user/ushome");
+  }
+  else{
+    res.redirect("/login")
+  }
 }
 
 

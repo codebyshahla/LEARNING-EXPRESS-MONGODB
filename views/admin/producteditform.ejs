@@ -1,86 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 90vh;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 400px;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
 
-        form {
-            display: grid;
-            gap: 15px;
-        }
+      input,
+      select {
+        margin-bottom: 10px;
+      }
 
-        label {
-            font-weight: bold;
-            color: #555;
-        }
+      button {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
+      button:hover {
+        background-color: #45a049;
+      }
     </style>
-    <title>Product Edit Form</title>
-</head>
+  </head>   
+  <body>
+    <%- include('header.ejs') %>
+    
+    <h2>Edit Form</h2>
+    <form action="/editProduct/<%=item._id %>" method="post" enctype="multipart/form-data">
+      <label for="productName">Product Name:</label>
+      <input type="text" value="<%=item.productName %>" id="productName" name="productName" required />
 
-<body>
-    <div class="container">
-        <h2>Edit Product</h2>
-        <form>
-            <label for="productName">Product Name</label>
-            <input type="text" id="productName" name="productName" required>
+      <label for="productDescription">Product Description:</label>
+      <textarea
+      
+        id="productDescription"
+        name="productDescription"
+        rows="4"
+        
+        required
+      ><%= escape(item.productDescription) %></textarea>
 
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" required>
+      <label for="productPrice">Product Price:</label>
+      <input
+        type="number"
+        id="productPrice"
+        name="productPrice"
+        step="0.01"
+        value="<%=item.productPrice %>"
+        required
+      />
 
-            <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+      <label for="productQuantity">Product Quantity:</label>
+      <input
+        type="number"
+        id="productQuantity"
+        name="productQuantity"
+        value="<%=item.productQuantity %>"
+        required
+      />
 
-            <button type="submit">Save Changes</button>
-        </form>
-    </div>
-</body>
+      <label for="imageUrl">Image</label>
+      <input
+        type="file"
+        id="imageUrl"
+        name="productImage"
+        accept="image/*"
+        required
+      />
 
+      <button type="submit">Add Product</button>
+    </form>
+  </body>
 </html>

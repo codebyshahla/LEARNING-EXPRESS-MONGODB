@@ -2,54 +2,57 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const userModel = require("../models/userschema");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const msg = require("../globalVariables/errorMessages");
-
-
 
 const signup = (req, res) => {
   // console.log(req.session)
-  let msg = req.session.errs
-  req.session.errs = ""
-  res.render("signup",{message: msg});
+  let msg = req.session.errs;
+  req.session.errs = "";
+  res.render("signup", { message: msg });
 };
 
 const login = (req, res) => {
+  if (req.session.user && req.session.isAdmin === false) {
+    res.redirect("/userhome");
+  } else if (req.session.isAdmin && req.session.user) {
+    res.redirect("/adminhome");
+  } else {
+  }
   res.render("login");
 };
 
 const postsignup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, confirmpass } = req.body;     
+    const { firstName, lastName, email, password, confirmpass } = req.body;
     // Find user already have an account
-    const existUser = await userModel.findOne({ email});
+    const existUser = await userModel.findOne({ email });
 
     // If user have an account then throw an error
-    if (existUser ) {
+    if (existUser) {
       req.session.errs = "Username already exists. Choose another username.";
-      res.redirect("/signup")
+      res.redirect("/signup");
     } else {
       // If user doesn't have an account create a new account if the password and confirm password matches
       if (password === confirmpass) {
-
-        // encrypt the password using bcrypt package 
-        const hashedPassword = await bcrypt.hash(password, 10);                     
+        // encrypt the password using bcrypt package
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = {
           firstName,
           lastName,
           email,
           password: hashedPassword,
         };
-        const userdata = new userModel(newUser)
+        const userdata = new userModel(newUser);
         await userdata.save();
-        res.redirect('/login')
+        res.redirect("/login");
       } else {
         req.session.errs = "Confirm password does not match";
         res.redirect("/signup");
       }
     }
   } catch (error) {
-    console.log("Something went wrong",error);
+    console.log("Something went wrong", error);
   }
 };
 
@@ -57,8 +60,8 @@ const postsignup = async (req, res) => {
 // find person with that email from database, if he doesn't have an account throw error
 // else compare hashed password with the input password using that package u used to hash the password
 
-// if password !== actualpassword , throw error 
-// else if check that user is an admin or user 
+// if password !== actualpassword , throw error
+// else if check that user is an admin or user
 // if that is admin 'user home' else 'user home'
 
 const postlogin = async (req, res) => {
@@ -90,14 +93,17 @@ const postlogin = async (req, res) => {
   } catch (error) {
     res.status(500).send(`Error during login: ${error.message}`);
   }
+};
+
+const logout = (req, res)=>{
+  req.session.destroy()
+  res.redirect('/login')
 }
-
-
-
 
 module.exports = {
   signup,
   login,
   postsignup,
-  postlogin
+  postlogin,
+  logout
 };
